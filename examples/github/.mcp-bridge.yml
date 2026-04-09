@@ -1,0 +1,32 @@
+# GitHub API → MCP Server
+#
+# This example generates an MCP server for the GitHub REST API,
+# filtered to the most useful endpoints for AI agents.
+#
+# Usage:
+#   GITHUB_TOKEN=ghp_xxxx npx mcp-bridge generate -c examples/github/.mcp-bridge.yml
+
+spec: https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json
+output: ./mcp-server-github
+name: github
+
+auth:
+  type: bearer
+  env: GITHUB_TOKEN
+
+# Only the most useful tags for AI agents
+filter:
+  tags:
+    - repos
+    - issues
+    - pulls
+    - git
+    - search
+    - users
+  methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+
+typescript: true

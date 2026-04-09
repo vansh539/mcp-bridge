@@ -1,0 +1,27 @@
+# Stripe API → MCP Server
+#
+# Usage:
+#   STRIPE_SECRET_KEY=sk_test_xxxx npx mcp-bridge generate -c examples/stripe/.mcp-bridge.yml
+
+spec: https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json
+output: ./mcp-server-stripe
+name: stripe
+
+auth:
+  type: bearer
+  env: STRIPE_SECRET_KEY
+
+filter:
+  tags:
+    - Customers
+    - PaymentIntents
+    - Charges
+    - Refunds
+    - Subscriptions
+    - Products
+    - Prices
+  methods:
+    - GET
+    - POST
+
+typescript: true

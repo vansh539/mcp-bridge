@@ -1,0 +1,33 @@
+# .mcp-bridge.yml — Example configuration
+# Run `npx mcp-bridge generate` with this file in your project root.
+
+# Path or URL to your OpenAPI spec
+spec: ./openapi.yaml
+
+# Where to write the generated MCP server
+output: ./mcp-server
+
+# Name for the MCP server (used in Claude Desktop config)
+name: my-api
+
+# Auth configuration
+auth:
+  type: bearer           # none | bearer | api-key | basic | oauth2
+  env: API_TOKEN         # environment variable name
+
+# Filter: only include these endpoint tags
+filter:
+  tags:
+    - users
+    - products
+  # excludeTags:
+  #   - admin
+  #   - internal
+  methods:
+    - GET
+    - POST
+    - PUT
+    - DELETE
+
+# Generate TypeScript (default: true)
+typescript: true
